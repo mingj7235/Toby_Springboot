@@ -19,6 +19,9 @@ public class Application {
 	public static void main(String[] args) {
 		ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
 		WebServer webServer = serverFactory.getWebServer(servletContext -> {
+
+			HelloController helloController = new HelloController();
+
 			servletContext.addServlet("frontController", new HttpServlet() {
 				@Override
 				protected void service(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
@@ -27,9 +30,11 @@ public class Application {
 					if (req.getRequestURI().equals("/hello") &&  req.getMethod().equals(HttpMethod.GET.name())) {
 						String name = req.getParameter("name");
 
+						String result = helloController.hello(name); // 복잡한 비지니스 로직은 여기에 위임
+
 						resp.setStatus(HttpStatus.OK.value());
 						resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
-						resp.getWriter().println("Hello " + name);
+						resp.getWriter().println(result);
 					}
 					if (req.getRequestURI().equals("/hello") &&  req.getMethod().equals(HttpMethod.POST.name())) {
 						// post
