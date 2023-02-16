@@ -20,6 +20,7 @@ public class Application {
 	public static void main(String[] args) {
 		GenericApplicationContext applicationContext = new GenericApplicationContext(); // Spring Container
 		applicationContext.registerBean(HelloController.class); // Bean 등록
+		applicationContext.registerBean(SimpleHelloService.class);
 		applicationContext.refresh(); // Spring Container 가 본인이 가지고 있는 Configuration Metadata 를 통해 컨테이너를 초기화 하는 작업. -> Bean Object 를 만들어준다.
 
 		ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
