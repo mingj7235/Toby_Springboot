@@ -9,18 +9,22 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class Application {
 
 	public static void main(String[] args) {
-		GenericWebApplicationContext applicationContext = new GenericWebApplicationContext();
+		GenericWebApplicationContext applicationContext = new GenericWebApplicationContext() {
+			@Override
+			protected void onRefresh() { // onRefresh 는 Spring Container 가 초기화 되는 도중에 진행되도록 하는 메소드다.
+				super.onRefresh();
+				// Spring Container 가 초기화 될 때, Dispatcher Servlet 을 생성하도록 하는 것.
+				ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
+				WebServer webServer = serverFactory.getWebServer(servletContext -> {
+					servletContext.addServlet("dispatcherServlet",
+							new DispatcherServlet(this)
+					).addMapping("/*");
+				});
+				webServer.start();
+			}
+		};
 		applicationContext.registerBean(HelloController.class);
 		applicationContext.registerBean(SimpleHelloService.class);
 		applicationContext.refresh();
-
-		ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
-		WebServer webServer = serverFactory.getWebServer(servletContext -> {
-			servletContext.addServlet("dispatcherServlet",
-					new DispatcherServlet(applicationContext)
-					).addMapping("/*");
-		});
-		webServer.start();
 	}
-
 }
