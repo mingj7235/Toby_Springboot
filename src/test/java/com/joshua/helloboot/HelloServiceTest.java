@@ -14,4 +14,13 @@ public class HelloServiceTest {
         Assertions.assertThat(ret).isEqualTo("Hello Test");
     }
 
+    @Test
+    void helloDecorator() {
+        HelloDecorator decorated = new HelloDecorator(name -> name);
+
+        String ret = decorated.sayHello("test");
+
+        Assertions.assertThat(ret).isEqualTo("Decorator ** test");
+    }
+
 }
