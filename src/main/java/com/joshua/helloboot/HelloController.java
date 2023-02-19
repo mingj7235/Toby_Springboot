@@ -1,5 +1,6 @@
 package com.joshua.helloboot;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ public class HelloController {
     @GetMapping("/hello")
     public String hello (String name) {
 
-        if (name == null || name.trim().length() == 0) throw new IllegalArgumentException();
+        if (!StringUtils.hasText(name)) throw new IllegalArgumentException();
 
         return helloService.sayHello(name);
     }
