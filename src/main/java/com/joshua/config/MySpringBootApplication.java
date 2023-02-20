@@ -1,4 +1,4 @@
-package com.joshua.helloboot;
+package com.joshua.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +9,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE) //Class, Interface, Enum
+@Target(ElementType.TYPE)
 @Configuration
 @ComponentScan
+@EnableMyAutoConfiguration
 public @interface MySpringBootApplication {
 
 }

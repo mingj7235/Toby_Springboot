@@ -1,5 +1,6 @@
 package com.joshua.helloboot;
 
+import com.joshua.config.MySpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
 @MySpringBootApplication
