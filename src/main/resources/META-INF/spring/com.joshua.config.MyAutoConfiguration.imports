@@ -1,2 +1,3 @@
 com.joshua.config.autoconfig.TomcatWebServerConfiguration
+com.joshua.config.autoconfig.JettyWebServerConfiguration
 com.joshua.config.autoconfig.DispatcherServletConfig
