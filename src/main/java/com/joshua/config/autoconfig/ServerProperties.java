@@ -1,5 +1,8 @@
 package com.joshua.config.autoconfig;
 
+import com.joshua.config.MyConfigurationProperties;
+
+@MyConfigurationProperties (prefix = "server")
 public class ServerProperties {
 
     private String contextPath;

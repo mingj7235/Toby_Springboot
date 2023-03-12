@@ -1,13 +1,16 @@
 package com.joshua.config.autoconfig;
 
 import com.joshua.config.ConditionalMyOnClass;
+import com.joshua.config.EnableMyConfigurationProperties;
 import com.joshua.config.MyAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 @MyAutoConfiguration
+@EnableMyConfigurationProperties(ServerProperties.class)
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
 public class TomcatWebServerConfiguration {
 
