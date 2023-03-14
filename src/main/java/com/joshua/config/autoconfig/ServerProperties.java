@@ -1,28 +1,16 @@
 package com.joshua.config.autoconfig;
 
 import com.joshua.config.MyConfigurationProperties;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @MyConfigurationProperties (prefix = "server")
 public class ServerProperties {
 
     private String contextPath;
 
     private int port;
-
-    public String getContextPath() {
-        return contextPath;
-    }
-
-    public void setContextPath(final String contextPath) {
-        this.contextPath = contextPath;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(final int port) {
-        this.port = port;
-    }
 
 }
