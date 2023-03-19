@@ -15,4 +15,11 @@ public class HelloDecorator implements HelloService{
     public String sayHello(final String name) {
         return "Decorator ** " + helloService.sayHello(name);
     }
+
+    @Override
+    public Integer countOf(final String name) {
+
+        return helloService.countOf(name);
+    }
+
 }
