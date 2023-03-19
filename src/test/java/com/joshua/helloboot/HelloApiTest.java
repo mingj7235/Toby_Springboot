@@ -1,7 +1,7 @@
 package com.joshua.helloboot;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT) // Test 를 실행할 때 Tomcat 을 띄워서 테스크하도록. 즉, 어플리케이션을 미리 실행하지 않아도 테스트가능
 public class HelloApiTest {
     @Test
     void helloApi () {
@@ -17,7 +18,7 @@ public class HelloApiTest {
         TestRestTemplate rest = new TestRestTemplate();
 
         ResponseEntity<String> res =
-                rest.getForEntity("http://localhost:8080/app/hello?name={name}", String.class, "Spring");
+                rest.getForEntity("http://localhost:9090/app/hello?name={name}", String.class, "Spring");
 
         // 응답 검증
         // status 200
@@ -35,7 +36,7 @@ public class HelloApiTest {
         TestRestTemplate rest = new TestRestTemplate();
 
         ResponseEntity<String> res =
-                rest.getForEntity("http://localhost:8080/app/hello?name=", String.class);
+                rest.getForEntity("http://localhost:9090/app/hello?name=", String.class);
 
         // 응답 검증
         // status 500

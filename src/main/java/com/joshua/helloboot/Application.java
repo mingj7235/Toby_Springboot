@@ -1,13 +1,13 @@
 package com.joshua.helloboot;
 
-import com.joshua.config.MySpringBootApplication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.PostConstruct;
 
-@MySpringBootApplication
+@SpringBootApplication
 @RequiredArgsConstructor
 public class Application {
 
@@ -17,14 +17,6 @@ public class Application {
 	void init () {
 		jdbcTemplate.execute("create table if not exists hello(name varchar(50) primary key, count int)");
 	}
-
-//	@Bean
-//	ApplicationRunner applicationRunner (Environment env) {
-//		return args -> {
-//			String name = env.getProperty("my.name");
-//			System.out.println("my.name: " + name);
-//		};
-//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
